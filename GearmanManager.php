@@ -139,6 +139,11 @@ abstract class GearmanManager {
     protected $user = null;
 
     /**
+     * The scope (prefix) of the workers. Allows for running several branches of the same code next to eachother on the same server.
+     */
+    protected $scope = null;
+
+    /**
      * If true, the worker code directory is checked for updates and workers
      * are restarted automatically.
      */
@@ -355,7 +360,7 @@ abstract class GearmanManager {
      */
     protected function getopt() {
 
-        $opts = getopt("ac:dD:h:Hl:o:p:P:u:v::w:r:x:Z");
+        $opts = getopt("ac:dD:h:Hl:o:p:P:u:v::w:r:x:Zs:");
 
         if(isset($opts["H"])){
             $this->show_help();
@@ -421,6 +426,12 @@ abstract class GearmanManager {
             $this->user = $opts['u'];
         } elseif(isset($this->config["user"])){
             $this->user = $this->config["user"];
+        }
+
+        if(isset($opts['s'])){
+            $this->scope = $opts['s'];
+        } elseif(isset($this->config["scope"])){
+            $this->scope = $this->config["scope"];
         }
 
         /**
@@ -1169,6 +1180,7 @@ abstract class GearmanManager {
         exit();
     }
 
-}
+    abstract protected function validate_lib_workers();
 
-?>
+    abstract protected function start_lib_worker($worker_list, $timeouts = array());
+}
