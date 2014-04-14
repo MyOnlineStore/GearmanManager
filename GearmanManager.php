@@ -358,9 +358,11 @@ abstract class GearmanManager {
      * Parses the command line options
      *
      */
-    protected function getopt() {
+    protected function getopt($opts = null) {
 
-        $opts = getopt("ac:dD:h:Hl:o:p:P:u:v::w:r:x:Zs:");
+        if (null == $opts) {
+            $opts = getopt("ac:dD:h:Hl:o:p:P:u:v::w:r:x:Zs:");
+        }
 
         if(isset($opts["H"])){
             $this->show_help();
