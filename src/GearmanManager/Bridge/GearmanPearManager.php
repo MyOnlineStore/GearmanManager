@@ -90,7 +90,7 @@ class GearmanPearManager extends GearmanManager {
                 $message.= "; timeout: $timeout";
             }
             $this->log($message, GearmanManager::LOG_LEVEL_WORKER_INFO);
-            $this->worker->addAbility($w, $timeout, $this->functions[$w]);
+            $this->worker->addAbility($this->scope . $w, $timeout, $this->functions[$w]);
         }
 
         $this->worker->attachCallback(array($this, 'job_start'), \Net_Gearman_Worker::JOB_START);

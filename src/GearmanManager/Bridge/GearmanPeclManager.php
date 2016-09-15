@@ -108,7 +108,7 @@ class GearmanPeclManager extends GearmanManager {
 
         $h = $job->handle();
 
-        $job_name = $job->functionName();
+        $job_name = str_replace($this->scope, '', $job->functionName());
 
         if ($this->prefix) {
             $func = $this->prefix.$job_name;
