@@ -47,7 +47,15 @@ class GearmanPearManager extends GearmanManager {
                 $message.= "; timeout: $timeout";
             }
             $this->log($message, GearmanManager::LOG_LEVEL_WORKER_INFO);
-            $worker->addAbility($w, $timeout);
+
+            $worker->addAbility(
+                $this->scope . $w,
+                $timeout,
+                [
+                    'path' => NET_GEARMAN_JOB_PATH . '/' . $w . '.php',
+                    'class_name' => $this->prefix . $w,
+                ]
+            );
         }
 
         $worker->attachCallback(array($this, 'job_start'), Net_Gearman_Worker::JOB_START);
@@ -194,7 +202,7 @@ class GearmanPearManager extends GearmanManager {
          * Validate functions
          */
         foreach($this->functions as $name => $func){
-            $class = NET_GEARMAN_JOB_CLASS_PREFIX.$name;
+            $class = $this->prefix . $name;
             if(!class_exists($class)) {
                 include $func['path'];
             }
