@@ -49,11 +49,11 @@ class GearmanPearManager extends GearmanManager {
             $this->log($message, GearmanManager::LOG_LEVEL_WORKER_INFO);
 
             $worker->addAbility(
-                $this->scope . $w,
+                $this->scope.$w,
                 $timeout,
                 [
-                    'path' => NET_GEARMAN_JOB_PATH . '/' . $w . '.php',
-                    'class_name' => $this->prefix . $w,
+                    'path' => NET_GEARMAN_JOB_PATH.'/'.$w.'.php',
+                    'class_name' => $this->prefix.$w,
                 ]
             );
         }
@@ -202,7 +202,7 @@ class GearmanPearManager extends GearmanManager {
          * Validate functions
          */
         foreach($this->functions as $name => $func){
-            $class = $this->prefix . $name;
+            $class = $this->prefix.$name;
             if(!class_exists($class)) {
                 include $func['path'];
             }
