@@ -1,0 +1,20 @@
+{
+  "name": "myonlinestore/gearmanmanager",
+  "description": "PHP daemon for managing gearman workers",
+  "keywords": ["gearman","net_gearman","gearman-manager"],
+  "homepage": "https://github.com/MyOnlineStore/GearmanManager",
+  "license": "BSD-2-Clause",
+  "autoload": {
+    "psr-4": {
+      "GearmanManager\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "suggest": {
+    "brianlmoon/net_gearman" : "A PHP interface for Gearman (requires version 1.0.*)",
+    "ext-gearman" : "PHP wrapper to libgearman"
+  },
+  "bin": ["bin/pear_manager.php", "bin/pecl_manager.php"]
+}
