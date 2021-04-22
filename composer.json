@@ -18,5 +18,5 @@
     "brianlmoon/net_gearman" : "A PHP interface for Gearman (requires version 1.0.*)",
     "ext-gearman" : "PHP wrapper to libgearman"
   },
-  "bin": ["bin/pear_manager.php", "bin/pecl_manager.php"]
+  "bin": ["pear-manager.php", "pecl-manager.php"]
 }
