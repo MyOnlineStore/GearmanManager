@@ -8,7 +8,9 @@
     "files": [
       "GearmanManager.php",
       "GearmanPearManager.php",
-      "GearmanPeclManager.php"
+      "GearmanPeclManager.php",
+      "pear-manager.php",
+      "pecl-manager.php"
     ]
   },
   "require": {
